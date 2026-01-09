@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amiras Company | بریندار شوکت</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,700;1,700&family=Reem+Kufi:wght@400;700&family=Noto+Sans+Arabic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Noto Sans Arabic', sans-serif; }
+        body { background: #ffffff; scroll-behavior: smooth; }
+
+        /* Navigation */
+        nav { 
+            background: rgba(255,255,255,0.98); padding: 15px 5%; position: fixed; width: 100%; top: 0; 
+            z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-links a { text-decoration: none; color: #4b5d16; font-weight: bold; margin: 0 10px; cursor: pointer; font-size: 13px; }
+        .lang-btns button { background: #4b5d16; color: white; border: none; padding: 5px 10px; border-radius: 12px; cursor: pointer; font-size: 11px; }
+
+        section { min-height: 100vh; width: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 100px 20px; text-align: center; }
+
+        /* 1. Hero Section */
+        #home { 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), 
+            url('https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center; color: white;
+        }
+        #home h1 { font-size: 3rem; color: #d4af37; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+
+        /* 2. Products */
+        #products { background: #fdfdfd; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; width: 100%; max-width: 1000px; }
+        .card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .card img { width: 100%; height: 260px; object-fit: cover; }
+
+        /* 3. Address Section */
+        #address { background: #f4f4f4; }
+        .map-box { width: 100%; max-width: 850px; height: 400px; border-radius: 30px; overflow: hidden; border: 6px solid white; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+        /* 4. Contact & Work Time (Combined) */
+        #contact { background: #ffffff; }
+        .contact-box { background: #f9fdf4; padding: 40px; border-radius: 30px; border: 1px solid #e0eec0; width: 100%; max-width: 600px; }
+        .phone-link { direction: ltr; display: block; font-size: 2.2rem; color: #4b5d16; font-weight: 700; margin: 15px 0; text-decoration: none; }
+        .work-label { background: #4b5d16; color: white; padding: 8px 20px; border-radius: 50px; display: inline-block; margin-top: 20px; font-weight: bold; }
+
+        /* 5. Manager - Extra Classical */
+        #manager { background: #111; color: white; position: relative; overflow: hidden; }
+        #manager::before { content: 'AMIRAS'; position: absolute; font-size: 15vw; color: rgba(255,255,255,0.03); font-weight: 900; z-index: 0; }
+        .manager-container { z-index: 1; }
+        .classic-name { 
+            font-family: 'Amiri', serif; 
+            font-size: 5rem; 
+            background: linear-gradient(to bottom, #f9e1a1 0%, #d4af37 50%, #a67c00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            margin: 20px 0;
+        }
+        .manager-title { font-family: 'Reem Kufi', sans-serif; font-size: 1.5rem; color: #d4af37; border-top: 1px solid #d4af37; border-bottom: 1px solid #d4af37; padding: 10px 30px; display: inline-block; }
+
+        footer { background: #000; color: #555; padding: 40px; text-align: center; }
+        .dev { color: #d4af37; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="lang-btns">
+            <button onclick="changeL('ku')">KU</button>
+            <button onclick="changeL('ar')">AR</button>
+            <button onclick="changeL('en')">EN</button>
+        </div>
+        <div class="nav-links">
+            <a onclick="toS('home')" id="n1">سەرەکی</a>
+            <a onclick="toS('products')" id="n2">بەرهەم</a>
+            <a onclick="toS('address')" id="n3">ناڤ ونیشان</a>
+            <a onclick="toS('contact')" id="n4">پەیوەندی</a>
+            <a onclick="toS('manager')" id="n5">ڕێڤەبەر</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <h1 id="h1">کۆمپانیا ئەمیراس</h1>
+        <p id="hs" style="font-size: 1.5rem;">کوالێتیا بلند و تاما ڕەسەن</p>
+    </section>
+
+    <section id="products">
+        <h2 id="p_title" style="color:#4b5d16; margin-bottom:40px;">بەرهەمێن مە</h2>
+        <div class="grid">
+            <div class="card"><img src="https://images.pexels.com/photos/1029344/pexels-photo-1029344.jpeg?auto=compress&cs=tinysrgb&w=800"><div style="padding:15px"><h3 id="p1t">زەیتا زەیتوونێ</h3></div></div>
+            <div class="card"><img src="https://images.pexels.com/photos/4198357/pexels-photo-4198357.jpeg?auto=compress&cs=tinysrgb&w=800"><div style="padding:15px"><h3 id="p2t">زەیتوونا کەسک</h3></div></div>
+        </div>
+    </section>
+
+    <section id="address">
+        <h2 id="a_title" style="color:#4b5d16; margin-bottom:15px;">ناڤ ونیشان</h2>
+        <h3 id="addr_val" style="margin-bottom:30px;">زاخۆ - جادا ئیبراهیم خەلیل</h3>
+        <div class="map-box">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12822.453472061245!2d42.6800!3d37.1400!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4009761000000000%3A0x0!2zMzfCsDA4JzI0LjAiTiA0MsKwNDAnNDguMCJF!5e0!3m2!1sen!2siq!4v17000000000000" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-box">
+            <h2 id="c_title" style="color:#4b5d16; margin-bottom:10px;">پەیوەندی</h2>
+            <a href="tel:07514702187" class="phone-link">0751 470 2187</a>
+            <a href="tel:07736949371" class="phone-link">0773 694 9371</a>
+            <a href="tel:+905324536574" class="phone-link">+90 532 453 6574</a>
+            <div class="work-label" id="wt_title">دەمێ کاری</div>
+            <p id="wt_val" style="font-size: 1.3rem; margin-top:10px; color:#333; font-weight:bold;">٨:٠٠ سپێدێ - ٥:٠٠ ئێڤاری</p>
+        </div>
+    </section>
+
+    <section id="manager">
+        <div class="manager-container">
+            <p id="m_lbl" class="manager-title">ڕێڤەبەری گشتی</p>
+            <h1 id="m_name" class="classic-name">يعقوب سندي</h1>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Amiras General Trading Company</p>
+        <span class="dev" id="devt">پڕۆگرامەر: بریندار شوکت</span>
+    </footer>
+
+    <script>
+        const langData = {
+            ku: { n1:"سەرەکی", n2:"بەرهەم", n3:"ناڤ ونیشان", n4:"پەیوەندی", n5:"ڕێڤەبەر", h1:"کۆمپانیا ئەمیراس", hs:"کوالێتیا بلند و تاما ڕەسەن یا زەیتوونێ", p_title:"بەرهەمێن مە", p1t:"زەیتا زەیتوونێ", p2t:"زەیتوونا کەسک", a_title:"ناڤ ونیشان", addr_val:"زاخۆ - جادا ئیبراهیم خەلیل", c_title:"پەیوەندی", wt_title:"دەمێ کاری", wt_val:"٨:٠٠ سپێدێ - ٥:٠٠ ئێڤاری", m_lbl:"ڕێڤەبەری گشتی", m_name:"يعقوب سندي", devt:"پڕۆگرامەر: بریندار شوکت", dir:"rtl" },
+            ar: { n1:"الرئيسية", n2:"المنتجات", n3:"العنوان", n4:"الاتصال", n5:"المدير", h1:"شركة أميراس", hs:"الجودة العالية والطعم الأصيل للزيتون", p_title:"منتجاتنا", p1t:"زيت زيتون", p2t:"زيتون أخضر", a_title:"العنوان", addr_val:"زاخو - شارع ابراهيم الخليل", c_title:"اتصل بنا", wt_title:"أوقات العمل", wt_val:"٨:٠٠ صباحاً - ٥:٠٠ مساءً", m_lbl:"المدير العام", m_name:"يعقوب سندي", devt:"المبرمج: بريندار شوكت", dir:"rtl" },
+            en: { n1:"Home", n2:"Products", n3:"Address", n4:"Contact", n5:"Manager", h1:"Amiras Company", hs:"High Quality & Authentic Taste of Olive", p_title:"Our Products", p1t:"Olive Oil", p2t:"Green Olives", a_title:"Address", addr_val:"Zakho - Ibrahim Khalil St.", c_title:"Contact Us", wt_title:"Work Hours", wt_val:"8:00 AM - 5:00 PM", m_lbl:"General Manager", m_name:"Yaqub Sindi", devt:"Programmer: Brindar Shawkat", dir:"ltr" }
+        };
+
+        function changeL(l) {
+            const d = langData[l];
+            document.body.dir = d.dir;
+            document.getElementById('n1').innerText = d.n1;
+            document.getElementById('n2').innerText = d.n2;
+            document.getElementById('n3').innerText = d.n3;
+            document.getElementById('n4').innerText = d.n4;
+            document.getElementById('n5').innerText = d.n5;
+            document.getElementById('h1').innerText = d.h1;
+            document.getElementById('hs').innerText = d.hs;
+            document.getElementById('p_title').innerText = d.p_title;
+            document.getElementById('p1t').innerText = d.p1t;
+            document.getElementById('p2t').innerText = d.p2t;
+            document.getElementById('a_title').innerText = d.a_title;
+            document.getElementById('addr_val').innerText = d.addr_val;
+            document.getElementById('c_title').innerText = d.c_title;
+            document.getElementById('wt_title').innerText = d.wt_title;
+            document.getElementById('wt_val').innerText = d.wt_val;
+            document.getElementById('m_lbl').innerText = d.m_lbl;
+            document.getElementById('m_name').innerText = d.m_name;
+            document.getElementById('devt').innerText = d.devt;
+        }
+        function toS(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
+    </script>
+</body>
+</html>
